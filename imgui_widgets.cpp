@@ -827,6 +827,21 @@ ImGuiID ImGui::GetWindowScrollbarID(ImGuiWindow* window, ImGuiAxis axis)
     return window->GetIDNoKeepAlive(axis == ImGuiAxis_X ? "#SCROLLX" : "#SCROLLY");
 }
 
+namespace ImGui
+{
+
+float RoundScalarWithFormatFloat(const char* format, ImGuiDataType data_type, float v)
+{
+    return RoundScalarWithFormatT<float, float>(format, data_type, v);
+}
+
+float SliderCalcRatioFromValueFloat(ImGuiDataType data_type, float v, float v_min, float v_max, float power, float linear_zero_pos)
+{
+    return SliderCalcRatioFromValueT<float, float>(data_type, v, v_min, v_max, power, linear_zero_pos);
+}
+
+} // namespace ImGui
+
 // Return scrollbar rectangle, must only be called for corresponding axis if window->ScrollbarX/Y is set.
 ImRect ImGui::GetWindowScrollbarRect(ImGuiWindow* window, ImGuiAxis axis)
 {
